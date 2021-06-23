@@ -1,37 +1,65 @@
 .light{
-  background-color: #eee;
+  background-color: #eee !important;
   color: var(--dark);
   font-size: 14px;
   font-weight: 500;
 }
 
+.light[disabled]{
+  background-color: #eee !important;
+  opacity: 0.3;
+}
+
 .primary{
-  background-color: var(--primary);
-  color: #FFF;
+  background-color: var(--primary) !important;
+  color: #FFF !important;
   font-size: 14px;
   font-weight: 500;
 }
 
-.success{
-  background-color: var(--success);
-  color: #FFF;
+.primary[disabled]{
+  background-color: var(--primary) !important;
+  opacity: 0.3;
+}
+
+.warning{
+  background-color: var(--warning) !important;
+  color: #FFF !important;
   font-size: 14px;
   font-weight: 500;
 }
 
+.warning[disabled]{
+  background-color: var(--warning) !important;
+  opacity: 0.3;
+}
+
+
 .success{
-  background-color: var(--success);
-  color: #FFF;
+  background-color: var(--success) !important;
+  color: #FFF !important;
   font-size: 14px;
   font-weight: 500;
+}
+
+.success[disabled]{
+  background-color: var(--success) !important;
+  opacity: 0.3;
 }
 
 .secondary{
-  background-color: var(--secondary);
-  color: #FFF;
+  background-color: var(--secondary) !important;
+  color: #FFF !important;
   font-size: 14px;
   font-weight: 500;
 }
+
+
+.secondary[disabled]{
+  background-color: var(--secondary) !important;
+  opacity: 0.3;
+}
+
 
 .text{
   margin-inline: 8px;

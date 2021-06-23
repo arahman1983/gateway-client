@@ -1,0 +1,38 @@
+.light{
+  background-color: #eee;
+  color: var(--dark);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.primary{
+  background-color: var(--primary);
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.success{
+  background-color: var(--success);
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.success{
+  background-color: var(--success);
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.secondary{
+  background-color: var(--secondary);
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.text{
+  margin-inline: 8px;
+}

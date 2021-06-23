@@ -1,0 +1,9 @@
+.headerContainer{
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 8px
+}
+
+.headerContainer h2{
+  color: #FFF;
+}

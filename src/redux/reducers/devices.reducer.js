@@ -1,4 +1,4 @@
-import { actionType as type } from "../actionTypes";
+import { actionType as type } from "../actionsTypes";
 
 const devices = {
   devicesArray: [],

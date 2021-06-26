@@ -1,11 +1,11 @@
 import {Modal, Button} from 'react-bootstrap'
 import {useState, useEffect} from 'react'
 import {FormError} from '../index'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {FiLoader} from 'react-icons/fi'
 import axios from '../../axios'
 import {Alert} from 'react-bootstrap'
-import {addGateway, editGateway} from '../../redux/actions/gateways.action'
+// import {addGateway, editGateway} from '../../redux/actions/gateways.action'
 
 const IPRegex = /^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
 
@@ -18,7 +18,7 @@ export default function GatewayForm({edit, show, onHideHandler, selected}) {
   const [selectedGateWay, setSelectedGateWay] = useState({})
   const gateways = useSelector(state => state.gateways)
   
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const [serialNumberError, setSerialNumberError] = useState("")
   const [gatewayNameError, setGatewayError] = useState("")
   const [IPv4Error, setIPv4Error] = useState("")

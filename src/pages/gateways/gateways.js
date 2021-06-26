@@ -119,7 +119,7 @@ export default function GatewaysPage() {
           </tbody>
         </table>
       </div>
-      <GatewayForm show={show} edit={edit} selected={selectedGateway} onHideHandler={onHideHandler} setGetAgain={setGetAgain} getAgain={getAgain} />
+      <GatewayForm show={show} edit={edit} selected={selectedGateway} onHideHandler={onHideHandler} />
       <DeleteForm show={deleteShow} onHideHandler={onHideHandler} deleteFn={deleteGatewayFn}/>
     </div>
   );

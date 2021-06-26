@@ -41,11 +41,11 @@ export default function GatewayForm({edit, show, onHideHandler, selected}) {
     selected 
     // eslint-disable-next-line array-callback-return
     ? gateways.filter(gateway => {
-      if(gateway._doc.serialNo === serialNumber && gateway._doc.serialNo !== selectedGateWay._doc.serialNo){
+      if(gateway.serialNo === serialNumber && gateway.serialNo !== selectedGateWay.serialNo){
       return gateway
       }}
       )
-    : gateways.filter(gateway => gateway._doc.serialNo === serialNumber)
+    : gateways.filter(gateway => gateway.serialNo === serialNumber)
     
     if(!serialNumber || uniqueCheck.length > 0){
       setSerialNumberError("Unique Serial Number is required")
@@ -119,11 +119,11 @@ export default function GatewayForm({edit, show, onHideHandler, selected}) {
 
   useEffect(() => {
     if(selected){
-      const gateway = gateways.find(gateway => gateway._doc._id === selected)
+      const gateway = gateways.find(gateway => gateway._id === selected)
       console.log(selected, gateway)
-      setSerialNumber(gateway._doc.serialNo)
-      setGateway(gateway._doc.name)
-      setIPv4(gateway._doc.IPv4)
+      setSerialNumber(gateway.serialNo)
+      setGateway(gateway.name)
+      setIPv4(gateway.IPv4)
       setSelectedGateWay(gateway)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

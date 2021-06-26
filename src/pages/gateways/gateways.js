@@ -6,6 +6,7 @@ import { Button, GatewayForm, DeleteForm } from "../../components";
 import { Alert } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import {getGateways, deleteGateway} from '../../redux/actions/gateways.action'
+import {getDevices} from '../../redux/actions/devices.action'
 import axios from "../../axios";
 
 export default function GatewaysPage() {
@@ -15,6 +16,7 @@ export default function GatewaysPage() {
   const [getAgain, setGetAgain] = useState(false)
   const [selectedGateway, setSelectedGateway] = useState()
   const gateways = useSelector(state => state.gateways)
+  const {devicesArray, count} = useSelector(state => state.devices)
   const dispatch = useDispatch()
   const history = useHistory()
   const handleViewBtn = (id) =>{
@@ -58,8 +60,18 @@ export default function GatewaysPage() {
   useEffect(() => {
     let async = true
     if(async){
+      const devices = axios.get('/peripheral').then(res => {
+        dispatch(getDevices(res.data, count > res.data.length ? count : res.data.length))
+        return res.data
+      })
       axios.get('/gateways')
-      .then (res => dispatch(getGateways(res.data), setGetAgain(false)))
+      .then (res =>{
+      dispatch(getGateways(res.data.map(gateway => (
+        {
+        ...gateway, devices: [...devicesArray.filter(device => device.gateway === gateway._id)]
+        }
+        ))), 
+      setGetAgain(false))})
       .catch(err => console.log(err))
     }
     return () => {
@@ -94,16 +106,16 @@ export default function GatewaysPage() {
                 <td>
                   <FiServer />
                 </td>
-                <td>{gateway._doc?.serialNo || gateway.serialNo}</td>
-                <td>{gateway._doc?.name || gateway.name}</td>
-                <td>{gateway._doc?.IPv4 || gateway.IPv4}</td>
+                <td>{gateway?.serialNo || gateway.serialNo}</td>
+                <td>{gateway?.name || gateway.name}</td>
+                <td>{gateway?.IPv4 || gateway.IPv4}</td>
                 <td>
-                { typeof gateway.devices === Array ? gateway.devices.length : 0 } <FiAirplay />
+                { gateway.devices.length } <FiAirplay />
                 </td>
                 <td>
-                  <Button type="link" text="" icon={<FiEye />} action={() => handleViewBtn(gateway._doc._id)} />
-                  <Button type="link" text="" icon={<FiPenTool />} action={() => handleEditBtn(gateway._doc._id)} />
-                  <Button type="link" text="" icon={<FiTrash2 />} action={() => handleDeleteBtn(gateway._doc._id)} />
+                  <Button type="link" text="" icon={<FiEye />} action={() => handleViewBtn(gateway._id)} />
+                  <Button type="link" text="" icon={<FiPenTool />} action={() => handleEditBtn(gateway._id)} />
+                  <Button type="link" text="" icon={<FiTrash2 />} action={() => handleDeleteBtn(gateway._id)} />
                 </td>
             </tr>
               ))

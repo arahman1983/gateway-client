@@ -14,7 +14,7 @@ export default function Devices() {
   const [selectedDevice, setSelectedDevice] = useState();
   const [edit, setEdit] = useState(false);
   const { id } = useParams();
-  const gateway = useSelector((state) => state.gateways.find((gateway) => gateway._doc._id === id));
+  const gateway = useSelector((state) => state.gateways.find((gateway) => gateway._id === id));
   const [devices, setDevices] = useState([])
   const devicesArray = useSelector(state => state.devices.devicesArray)
   const count = useSelector(state => state.devices.count)
@@ -72,7 +72,7 @@ export default function Devices() {
     if(async){
       axios.get('/peripheral')
       .then(res =>{
-        const devices = res.data.filter(device => device.gateway === gateway._doc._id)
+        const devices = res.data.filter(device => device.gateway === gateway._id)
         dispatch(getDevices(res.data, count > res.data.length ? count : res.data.length))
         setDevices(devices)
         setDevicesNo(devices.length);
@@ -93,7 +93,7 @@ export default function Devices() {
       <div className={styles.header}>
         <h2>
           {" "}
-          {gateway && gateway._doc.name}{" "}
+          {gateway && gateway.name}{" "}
           <small className="text-secondary">
             <sup>{devicesNo} Devices</sup>
           </small>
@@ -102,11 +102,11 @@ export default function Devices() {
       </div>
       <div className="px-1 my-3">
         <p className="my-1">
-          <b className="col-4">IPv4:</b> <span className="col-8">{gateway && gateway._doc.IPv4}</span>{" "}
+          <b className="col-4">IPv4:</b> <span className="col-8">{gateway && gateway.IPv4}</span>{" "}
         </p>
         <p className="my-1">
           {" "}
-          <b className="col-4">SN: </b> <span className="col-8"></span> {gateway && gateway._doc.serialNo}{" "}
+          <b className="col-4">SN: </b> <span className="col-8"></span> {gateway && gateway.serialNo}{" "}
         </p>
       </div>
       <div>
